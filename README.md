@@ -2,6 +2,12 @@
 
 [Commit Rule](https://www.conventionalcommits.org/en/v1.0.0/)
 
+```
+type(scope?): subject
+```
+
+Type: Must be one of the following:
+
 - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
 - ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
 - docs: Documentation only changes
@@ -12,6 +18,12 @@
 - revert: Reverts a previous commit
 - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 - test: Adding missing tests or correcting existing tests
+
+Scope: The scope could be anything specifying place of the commit change. For example $location, $browser, $compile, $rootScope, ngHref, ngClick, ngView, etc...
+
+Subject: The subject contains succinct description of the change:
+
+---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
