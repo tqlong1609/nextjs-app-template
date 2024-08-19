@@ -9,7 +9,7 @@ export default async function Hydation() {
 
   await queryClient.prefetchQuery({
     queryKey: ['hydrate-users'],
-    queryFn: getUsers,
+    queryFn: () => getUsers(),
   })
 
   return (
