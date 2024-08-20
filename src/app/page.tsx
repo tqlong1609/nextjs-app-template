@@ -1,19 +1,26 @@
-import Link from 'next/link'
+import FormAntPage from '@/components/FormAnt'
+import { Button, Divider, Space } from 'antd'
 
-export default function Home() {
+const Home = function Home() {
   return (
-    <div>
-      <h1>Hello, Next.js 14 App Directory!</h1>
-      <p>
-        <Link prefetch href="/initial-data">
-          Prefetching Using initial data --- Good for SEO
-        </Link>
-      </p>
-      <p>
-        <Link prefetch href="/hydration">
-          Prefetching Using Hydration --- Good for SEO
-        </Link>
-      </p>
-    </div>
+    <>
+      <section style={{ textAlign: 'center', marginTop: 48, marginBottom: 40, padding: 100 }}>
+        <Space align="start">
+          <img
+            style={{ width: 40, height: 40 }}
+            src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+            alt="Ant Design"
+          />
+          <h2 style={{ marginBottom: 0 }}>Ant Design (Without Sub Components)</h2>
+        </Space>
+        <Divider style={{ marginBottom: 60 }}>Divider</Divider>
+        <Button type="primary" block href="/with-sub-components">
+          With Sub Components
+        </Button>
+        <FormAntPage />
+      </section>
+    </>
   )
 }
+
+export default Home
