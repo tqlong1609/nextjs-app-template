@@ -1,0 +1,202 @@
+%commonStyles {
+  $gutter-x: 16px;
+  $gutter-y: 8px;
+
+  border-radius: 8px;
+  display: inline-flex;
+  padding: $gutter-y $gutter-x;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-16);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+@mixin btn-primary($width: 100%, $icon: "") {
+  @extend %commonStyles;
+  cursor: pointer;
+  color: var(--color-ui-white);
+  width: $width;
+  border: 0px 2px 4px 0px rgba(102, 102, 102, 0.16),
+    0px 0px 1px 0px rgba(102, 102, 102, 0.04);
+  background: var(--color-ui-blue-500);
+  background: linear-gradient(
+    81deg,
+    var(--color-ui-blue-500) -0.64%,
+    var(--color-ui-blue-400) 49.15%,
+    var(--color-ui-blue-200) 100%
+  );
+
+  &:hover {
+    cursor: pointer;
+    background-position: 100% 0;
+    background-color: var(--color-ui-blue-400);
+    box-shadow: 0px 0.5px 2px 0px rgba(102, 102, 102, 0.16),
+      0px 0px 1px 0px rgba(26, 26, 26, 0.08);
+    background-image: linear-gradient(
+      to right,
+      var(--color-ui-blue-400),
+      var(--color-ui-blue-400),
+      var(--color-ui-blue-400),
+      var(--color-ui-blue-400)
+    );
+  }
+
+  &:active {
+    background-position: 100% 0;
+    background-color: var(--color-ui-blue-400);
+    box-shadow: 0px 0.5px 2px 0px rgba(102, 102, 102, 0.16),
+      0px 0px 1px 0px rgba(26, 26, 26, 0.08);
+    background-image: linear-gradient(
+      to right,
+      var(--color-ui-blue-400),
+      var(--color-ui-blue-400),
+      var(--color-ui-blue-400),
+      var(--color-ui-blue-400)
+    );
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+    background-color: var(--neutral-grey-8-disabled-bg);
+    background-image: linear-gradient(
+      to right,
+      var(--neutral-grey-8-disabled-bg),
+      var(--neutral-grey-8-disabled-bg),
+      var(--neutral-grey-8-disabled-bg),
+      var(--neutral-grey-8-disabled-bg)
+    );
+  }
+
+  @if $icon == right {
+    img,
+    svg,
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  }
+
+  @if $icon == left {
+    img,
+    svg,
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+}
+
+@mixin btn-secondary($width: 100%, $icon: "") {
+  cursor: pointer;
+  width: $width;
+  color: var(--color-ui-blue-400);
+  border-radius: 8px;
+  border: 1.5px solid var(--color-ui-blue-400);
+  background: var(--color-ui-white);
+  box-shadow: 0px 2px 4px 0px rgba(102, 102, 102, 0.16),
+    0px 0px 1px 0px rgba(102, 102, 102, 0.04);
+
+  @extend %commonStyles;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-ui-blue-30);
+  }
+
+  &:active {
+    background-color: var(--color-ui-blue-30);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1.5px solid rgba(0, 0, 0, 0.09);
+    background: var(--color-ui-white);
+  }
+
+  @if $icon == right {
+    img,
+    svg,
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  }
+
+  @if $icon == left {
+    img,
+    svg,
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+}
+
+@mixin btn-flat($width: 100%, $icon: "") {
+  cursor: pointer;
+  width: $width;
+  color: var(--color-ui-blue-400);
+  border-radius: 8px;
+  background-color: transparent;
+
+  @extend %commonStyles;
+
+  &:hover {
+    background-color: var(--color-ui-blue-30);
+  }
+
+  &:active {
+    background-color: var(--color-ui-blue-30);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+  }
+
+  @if $icon == right {
+    img,
+    svg,
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  }
+
+  @if $icon == left {
+    img,
+    svg,
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+}
+
+@mixin disable-selection {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}

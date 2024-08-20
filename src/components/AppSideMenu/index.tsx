@@ -1,11 +1,20 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { Menu } from 'antd'
 
 export default function AppSideMenu() {
-  const menuItems = [
-    { label: <Link href="/">Dashboard</Link>, key: 1 },
-    { label: <Link href="/factories">Factories</Link>, key: 2 },
-  ]
-  return <Menu mode="inline" items={menuItems} />
+  const pathname = usePathname()
+  return (
+    <Menu
+      mode="inline"
+      items={[
+        { label: <Link href="/">Dashboard</Link>, key: '/' },
+        { label: <Link href="/factories">Factories</Link>, key: '/factories' },
+      ]}
+      selectedKeys={[pathname]}
+    />
+  )
 }

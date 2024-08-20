@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-// import './globals.css';
 import ReactQueryProvider from '@/providers/ReactQueryProvider'
+// import './globals.css';
+import '@/styles/index.scss'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 
 const inter = Inter({ subsets: ['latin'] })

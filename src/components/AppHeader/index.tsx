@@ -1,21 +1,56 @@
-import React from 'react'
+'use client'
 
-import { RadarChartOutlined, UserOutlined } from '@ant-design/icons'
-import { Avatar } from 'antd'
+import Link from 'next/link'
+
+import { Menu } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 
+import CollapseIcon from '../Icons/collapse'
+import Profile from '../Profile'
+import { HeaderWrapper } from './HeaderWrapper'
+
 function AppHeader() {
+  const items = [
+    {
+      key: `header_main`,
+      label: <Profile />,
+      children: [
+        {
+          key: `key_settings`,
+          label: 'Settings',
+        },
+        {
+          key: `key_profile`,
+          label: 'Profile',
+        },
+        {
+          type: 'divider',
+        },
+        {
+          key: `key_signout`,
+          label: 'Signout',
+        },
+      ],
+    },
+  ]
+
   return (
-    <Header className="!bg-white border-b border-[#f1f1f1] flex items-center justify-between sticky top-0 z-10">
-      <div className="flex items-center gap-2">
-        <RadarChartOutlined className="text-3xl" />
-        <div>Academic</div>
-      </div>
-      <div className="flex items-center gap-2">
-        <Avatar size={36} src="/profile.png" />
-        <div>John Doe</div>
-      </div>
-    </Header>
+    <HeaderWrapper>
+      <Header>
+        <div className="header_wrapper">
+          <div className="collapse">
+            <CollapseIcon />
+          </div>
+          <div>
+            <Link legacyBehavior href="/">
+              <a className="brand">Test</a>
+            </Link>
+          </div>
+        </div>
+
+        <Menu mode="horizontal" items={items} />
+      </Header>
+    </HeaderWrapper>
   )
 }
 
