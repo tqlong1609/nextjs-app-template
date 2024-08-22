@@ -100,11 +100,16 @@
   --font-size-40: 2.5rem;
 }
 
+* {
+  font-family: var(--font-ibm-plex-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
 html,
 body {
   background-color: var(--color-ui-white);
   padding: 0;
   margin: 0;
-  font-family: "IBM Plex Sans Thai", sans-serif;
-  font-size: 16px;
 }
+
