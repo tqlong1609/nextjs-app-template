@@ -1,19 +1,15 @@
-import z from "zod";
+import z from 'zod'
 
-export type AuthenticationResponse = {
-  statusCode?: number;
-  message: string;
-  token?: string;
-};
+const authenticationResponseSchema = z.object({})
 
-const authenticationResponseSchema = z.object({
-  statusCode: z.number().optional(),
-  message: z.string(),
-  token: z.string().optional()
-});
+const checkLoginResponseSchema = z.object({
+  userId: z.string(),
+})
 
-export type AuthenticationResponseSchema = z.infer<
-  typeof authenticationResponseSchema
->;
+const logoutResponseSchema = z.object({})
 
-export { authenticationResponseSchema };
+export type AuthenticationResponseSchema = z.infer<typeof authenticationResponseSchema>
+export type CheckLoginResponseSchema = z.infer<typeof checkLoginResponseSchema>
+export type LogoutResponseSchema = z.infer<typeof logoutResponseSchema>
+
+export { authenticationResponseSchema, checkLoginResponseSchema, logoutResponseSchema }

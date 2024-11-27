@@ -4,18 +4,17 @@ import React from 'react'
 
 import Image from 'next/image'
 
-import { getUsers, User } from '@/utils/api-requests'
 import { useQuery } from '@tanstack/react-query'
 
-export default function ListUsers({ users }: { users: User[] }) {
+export default function ListUsers() {
   const [count, setCount] = React.useState(0)
 
-  const { data } = useQuery({
-    queryKey: ['initial-users'],
-    queryFn: () => getUsers(),
-    initialData: users,
-    staleTime: 5 * 1000,
-  })
+  // const { data } = useQuery({
+  //   queryKey: ['hydrate-users'],
+  //   queryFn: () => getUsers({ token }),
+  //   staleTime: 10 * 1000,
+  //   enabled: isAuth,
+  // })
 
   return (
     <main style={{ maxWidth: 1200, marginInline: 'auto', padding: 20 }}>
@@ -36,7 +35,7 @@ export default function ListUsers({ users }: { users: User[] }) {
             gap: 20,
           }}
         >
-          {data.map((user) => (
+          {/* {data?.map((user) => (
             <div key={user.id} style={{ border: '1px solid #ccc', textAlign: 'center' }}>
               <Image
                 src={`https://robohash.org/${user.id}?set=set2&size=180x180`}
@@ -46,7 +45,7 @@ export default function ListUsers({ users }: { users: User[] }) {
               />
               <h3>{user.name}</h3>
             </div>
-          ))}
+          ))} */}
         </div>
       }
     </main>

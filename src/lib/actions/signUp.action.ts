@@ -1,4 +1,4 @@
-export const signUp = async (prevState, formData) => {
+export const signUp = async (prevState: any, formData: any) => {
   const { username, email, password, passwordRepeat } = Object.fromEntries(formData)
 
   if (password !== passwordRepeat) {

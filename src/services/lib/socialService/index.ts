@@ -9,7 +9,6 @@ import {
   GetUserInforResponse,
   GoogleGetUserInfoResponse,
   GoogleValidateTokenResponse,
-  UpdateAccountParams,
   ValidateTokenResponse,
 } from './type'
 
@@ -18,9 +17,6 @@ interface ISocialService {
   validateToken(token: string): Promise<ValidateTokenResponse>
   getAccountInfor(token: string): Promise<GetUserInforResponse>
 
-  get updateAccountUrl(): string
-  updateAccount(data: UpdateAccountParams): Promise<string>
-
   getFBAccessToken(params: GetFBAccessTokenParams): Promise<GetFBAccessTokenResponse>
   getFBUserInfor(token: string): Promise<object>
 }
@@ -28,7 +24,6 @@ export * from './type'
 export class SocialService extends Services implements ISocialService {
   url = API_URL + '/social'
   abortController?: AbortController
-  updateAccountUrl = this.url + 'updateAccount'
 
   // GOOGLE LOGIN
   validateToken = async (token: string): Promise<ValidateTokenResponse> => {
@@ -87,29 +82,6 @@ export class SocialService extends Services implements ISocialService {
         // Handle other errors
         console.error('Error fetching user profile:', error)
         throw error
-      }
-      throw new Error(unknownErrorMsg)
-    }
-  }
-  updateAccount = async (data: UpdateAccountParams): Promise<string> => {
-    this.abortController = new AbortController()
-    try {
-      const response = await this.fetchApi<
-        UpdateAccountParams,
-        typeof updateAccountResponseSchema,
-        string
-      >({
-        method: 'POST',
-        url: this.updateAccountUrl,
-        schema: updateAccountResponseSchema,
-        data,
-        signal: this.abortController.signal,
-        transformResponse: (res) => res.message,
-      })
-      return response
-    } catch (error) {
-      if (!this.isCancel(error) && isAxiosError(error)) {
-        throw new Error(error.response ? error.response.data.message : unknownErrorMsg)
       }
       throw new Error(unknownErrorMsg)
     }

@@ -29,7 +29,7 @@ export class UserService extends Services implements IUserService {
         schema: getUsersResponseSchema,
       })
 
-      return response
+      return response.data
     } catch (error) {
       if (this.isCancel(error)) {
         throw error

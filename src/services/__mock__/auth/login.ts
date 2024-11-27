@@ -1,6 +1,8 @@
+import { AuthenticationResponse, LoginParams } from '@/services/lib/authService/type'
+
 import { axiosMockAdapterInstance } from '../../config/axios'
 import { IAccount } from '../../entities'
-import { AuthenticationResponse, AuthService, LoginParams } from '../../lib'
+import { AuthService } from '../../lib'
 import accountsData from './data/accounts.json'
 
 const accounts: Array<IAccount> = accountsData

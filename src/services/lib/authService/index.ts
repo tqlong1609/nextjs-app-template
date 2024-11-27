@@ -1,130 +1,83 @@
-import { isAxiosError } from '../../config/axios';
-import { API_URL } from '../../config/url';
-import { Services } from '../../Services';
-import { authenticationResponseSchema } from './schema';
+import { API_URL } from '../../config/url'
+import { Services } from '../../Services'
 import {
-  LoginParams,
-  RegisterParams,
-  AccessToken,
-  AuthenticationResponse,
-} from './type';
-
-const unknownError = 'Unexpected error occurred';
+  AuthenticationResponseSchema,
+  authenticationResponseSchema,
+  CheckLoginResponseSchema,
+  checkLoginResponseSchema,
+  logoutResponseSchema,
+  LogoutResponseSchema,
+} from './schema'
+import { LoginParams } from './type'
 
 interface IAuthService {
-  get registerUrl(): string;
-  register(data: RegisterParams): Promise<AuthenticationResponse>;
-
-  get loginUrl(): string;
-  login(data: LoginParams): Promise<AuthenticationResponse>;
-
-  get refreshTokenUrl(): string;
-  refreshToken(data: AccessToken): Promise<AuthenticationResponse>;
+  get loginUrl(): string
+  get checkLoginUrl(): string
+  get logoutUrl(): string
+  login(data: LoginParams): Promise<AuthenticationResponseSchema>
+  checkLogin(): Promise<CheckLoginResponseSchema>
+  logout(): Promise<LogoutResponseSchema>
 }
 
 export class AuthService extends Services implements IAuthService {
-  url: string = API_URL + '/auth';
-  abortController?: AbortController;
+  url: string = API_URL ?? ''
+  abortController?: AbortController
 
-  registerUrl: string = this.url + '/register';
-  loginUrl: string = this.url + '/login';
-  refreshTokenUrl: string = this.url + '/refreshToken';
+  loginUrl: string = this.url + '/login'
+  checkLoginUrl: string = this.url + '/check'
+  logoutUrl: string = this.url + '/logout'
 
-  register = async (data: RegisterParams): Promise<AuthenticationResponse> => {
-    this.abortController = new AbortController();
-    try {
-      const response = await this.fetchApi<
-        RegisterParams,
-        typeof authenticationResponseSchema,
-        AuthenticationResponse
-      >({
-        method: 'POST',
-        url: this.registerUrl,
-        schema: authenticationResponseSchema,
-        data,
-        signal: this.abortController.signal,
-        transformResponse: (res) => res,
-      });
-      return {
-        message: response.message,
-        token: response.token,
-      };
-    } catch (error) {
-      if (this.isCancel(error)) {
-        // Handle other errors
-        throw error;
-      } else if (isAxiosError(error)) {
-        throw new Error(
-          error.response ? error.response.data.message : unknownError
-        );
-      }
-      throw new Error(unknownError);
-    }
-  };
-  login = async (data: LoginParams): Promise<AuthenticationResponse> => {
-    this.abortController = new AbortController();
+  login = async (
+    data: LoginParams,
+  ): Promise<{ data: AuthenticationResponseSchema; cookie: string | undefined }> => {
     try {
       const response = await this.fetchApi<
         LoginParams,
         typeof authenticationResponseSchema,
-        AuthenticationResponse
+        AuthenticationResponseSchema
       >({
         method: 'POST',
         url: this.loginUrl,
         schema: authenticationResponseSchema,
         data,
-        signal: this.abortController.signal,
-        transformResponse: (res) => res,
-      });
-      return {
-        message: response.message,
-        token: response.token,
-      };
+      })
+
+      return response
     } catch (error) {
-      if (this.isCancel(error)) {
-        // Handle other errors
-        throw error;
-      } else if (isAxiosError(error)) {
-        throw new Error(
-          error.response ? error.response.data.message : unknownError
-        );
-      }
-      throw new Error(unknownError);
+      throw this.onError(error)
     }
-  };
-  refreshToken = async (
-    accessToken: AccessToken
-  ): Promise<AuthenticationResponse> => {
-    this.abortController = new AbortController();
+  }
+
+  checkLogin = async (): Promise<CheckLoginResponseSchema> => {
     try {
       const response = await this.fetchApi<
-        unknown,
-        typeof authenticationResponseSchema,
-        AuthenticationResponse
+        void,
+        typeof checkLoginResponseSchema,
+        CheckLoginResponseSchema
       >({
-        method: 'POST',
-        url: this.refreshTokenUrl,
-        schema: authenticationResponseSchema,
-        data: {},
-        headers: { Authorization: `Bearer ${accessToken}` },
-        signal: this.abortController.signal,
-        transformResponse: (res) => res,
-      });
-      return {
-        message: response.message,
-        token: response.token,
-      };
+        method: 'GET',
+        url: this.checkLoginUrl,
+        schema: checkLoginResponseSchema,
+      })
+
+      return response.data
     } catch (error) {
-      if (this.isCancel(error)) {
-        // Handle other errors
-        throw error;
-      } else if (isAxiosError(error)) {
-        throw new Error(
-          error.response ? error.response.data.message : unknownError
-        );
-      }
-      throw new Error(unknownError);
+      throw this.onError(error)
     }
-  };
+  }
+
+  logout = async (): Promise<LogoutResponseSchema> => {
+    try {
+      await this.fetchApi<void, typeof logoutResponseSchema, LogoutResponseSchema>({
+        method: 'POST',
+        url: this.logoutUrl,
+        schema: logoutResponseSchema,
+      })
+      return {
+        message: 'Logout successful',
+      }
+    } catch (error) {
+      throw this.onError(error)
+    }
+  }
 }
-export * from './type';
