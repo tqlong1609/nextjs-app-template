@@ -1,88 +1,4 @@
-// //===== Colors =====//
-// $theme-color: rgb(131, 72, 242);
-// $body-color: #000000;
-// $body-color-2: #161616;
-// $heading-color: #1f1f25;
-// $border-color: #d4d4d4;
-// $white: #ededed;
-// $gray: #e5e5e5;
-// $black: #000;
-
-// //===== Fonts =====//
-// $body-font: var(--font-inter);
-// $heading-font: var(--font-poppins);
-
-// //===== Font sizes =====//
-// $body-font-size: 16px;
-// $h1-font-size: 60px;
-// $h2-font-size: 48px;
-// $h3-font-size: 30px;
-// $h4-font-size: 24px;
-// $h5-font-size: 20px;
-// $h6-font-size: 16px;
-
-// //===== Line Height =====//
-// $body-line-height: 1.5;
-
-// //===== Border radius =====//
-// $border-radius: 5px;
-// $button-border-radius: 5px;
-
-// //===== Transition =====//
-// $transition: all 0.3s ease-in-out;
-
-// //===== z-index =====//
-// $zindex-dropdown: 1000;
-// $zindex-sticky: 1020;
-// $zindex-fixed: 1030;
-// $zindex-modal-backdrop: 1040;
-// $zindex-modal: 1050;
-// $zindex-popover: 1060;
-// $zindex-tooltip: 1070;
-// $zindex-toast: 1080;
-// $zindex-offcanvas: 1090;
-
-// //===== Breakpoints =====//
-// $breakpoints: (
-//   xs: 0,
-//   sm: 576px,
-//   md: 768px,
-//   lg: 992px,
-//   xl: 1200px,
-//   xxl: 1400px,
-// );
-
-// $small-mobile: 'only screen and (max-width: 479px)';
-
-// //===== Container =====//
-// $container-max-widths: (
-//   sm: 540px,
-//   md: 720px,
-//   lg: 960px,
-//   xl: 1140px,
-//   xxl: 1320px,
-// );
-
-// //===== Spacing =====//
-// $spacer: 1rem;
-// $spacers: (
-//   0: 0,
-//   1: (
-//     $spacer * 0.25,
-//   ),
-//   2: (
-//     $spacer * 0.5,
-//   ),
-//   3: $spacer,
-//   4: (
-//     $spacer * 1.5,
-//   ),
-//   5: (
-//     $spacer * 3,
-//   ),
-// );
-
-@import 'bootstrap/scss/functions';
+@import "bootstrap/scss/functions";
 
 $font-size-ratio: 1.2;
 
@@ -91,7 +7,7 @@ $font-size-base: $font-size-ratio * 1rem;
 $primary: #00947e;
 $input-focus-border-color: $primary;
 
-@import 'admin-lte/build/scss/bootstrap-variables';
+@import "admin-lte/build/scss/bootstrap-variables";
 
 $font-noto-sans-jp: "Noto Sans JP", system-ui;
 

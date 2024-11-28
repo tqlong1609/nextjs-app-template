@@ -1,3 +1,5 @@
+@import 'reset';
+
 // Bootstrap
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
@@ -6,10 +8,22 @@
 @import 'variables';
 @import 'global';
 @import 'typography';
-@import 'extend';
+@import 'common';
 @import 'components';
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// Variables and Mixins
+// ---------------------------------------------------
+@import 'admin-lte/build/scss/variables';
+@import 'admin-lte/build/scss/variables-alt';
+
+@import "admin-lte/build/scss/parts/core";
+@import "admin-lte/build/scss/parts/components";
+@import "admin-lte/build/scss/parts/extra-components";
+@import "admin-lte/build/scss/parts/pages";
+@import "admin-lte/build/scss/parts/plugins";
+@import "admin-lte/build/scss/parts/miscellaneous";
 // @import "bootstrap-icons/font/bootstrap-icons.css";
 // Custom framework
 // @import "functions";

@@ -16,7 +16,6 @@ button {
     font-size: 16px;
     position: relative;
     letter-spacing: 0.2px;
-    @extend %transition;
     &:hover {
       transform: translateY(-3px);
       background: $gray;
