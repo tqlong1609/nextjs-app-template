@@ -11,23 +11,7 @@
 
 // Bootstrap
 // ---------------------------------------------------
-@import 'variables';
-@import 'bootstrap/scss/bootstrap';
 
-// Variables and Mixins
-// ---------------------------------------------------
-@import 'admin-lte/build/scss/variables';
-@import 'admin-lte/build/scss/variables-alt';
-// sassのエラーが出るため修正
-// https://github.com/ColorlibHQ/AdminLTE/issues/4586
-@import 'admin-lte/mixins';
-
-@import 'admin-lte/build/scss/parts/core';
-@import 'admin-lte/build/scss/parts/components';
-@import 'admin-lte/build/scss/parts/extra-components';
-@import 'admin-lte/build/scss/parts/pages';
-@import 'admin-lte/build/scss/parts/plugins';
-@import 'admin-lte/build/scss/parts/miscellaneous';
 
 ul {
   list-style: none;
